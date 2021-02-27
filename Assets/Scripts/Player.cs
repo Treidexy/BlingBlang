@@ -33,7 +33,9 @@ public class Player : MonoBehaviour
 		else if (m_Frozen)
 			OnMouseUp();
 
-		if (!m_Frozen)
+		if (m_Frozen)
+			m_Rigidbody.velocity = Vector2.zero;
+		else
 		{
 			float velHor = Input.GetAxis("Horizontal");
 			float velVer = Input.GetAxis("Vertical");
