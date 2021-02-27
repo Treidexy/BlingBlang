@@ -8,11 +8,15 @@ public class Player : MonoBehaviour
 	private float m_Speed;
 	[SerializeField]
 	private float m_AirBonus;
-	private Rigidbody2D m_Rigidbody;
+	[SerializeField]
+	private float m_MlichieBounce;
+	[SerializeField]
+	private float m_GlavaBounce;
 
 	private bool m_MouseOver;
 	private bool m_Frozen;
 
+	private Rigidbody2D m_Rigidbody;
 	private Vector2 m_Velocity;
 
 	private uint m_Collisions;
@@ -23,7 +27,7 @@ public class Player : MonoBehaviour
 		m_Rigidbody = GetComponent<Rigidbody2D>();
 	}
 
-    private void FixedUpdate()
+	private void FixedUpdate()
 	{
 		if (m_MouseOver && Input.GetMouseButton(0))
 		{
@@ -52,10 +56,10 @@ public class Player : MonoBehaviour
 		m_MouseOver = false;
 	}
 
-    private void OnMouseOver() =>
+	private void OnMouseOver() =>
 		m_MouseOver = true;
 
-    private void OnMouseDown()
+	private void OnMouseDown()
 	{
 		m_Frozen = true;
 
@@ -75,25 +79,29 @@ public class Player : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (collision.gameObject.layer == LayerMask.NameToLayer("MlichieBottom"))
-        {
+		{
 			//transform.position += new Vector3 { y = GetComponent<Collider2D>().bounds.size.y };
-			AddForce(new Vector2 { y = 1000 });
-        }
+			AddForce(new Vector2 { y = m_MlichieBounce });
+		}
 		else if (collision.gameObject.layer == LayerMask.NameToLayer("Mlichie"))
-        {
+		{
 			if (m_Rigidbody.velocity.y <= 0.01f && !m_Frozen)
 				// TODO: Lose
 				Debug.Log("Player died. :(");
-        }
+		}
+		else if (collision.gameObject.layer == LayerMask.NameToLayer("Glava"))
+		{
+			AddForce(new Vector2 { y = m_GlavaBounce });
+		}
 
-			m_Collisions++;
+		m_Collisions++;
 	}
 
-    private void OnTriggerExit2D(Collider2D collision) =>
-        m_Collisions--;
+	private void OnTriggerExit2D(Collider2D collision) =>
+		m_Collisions--;
 
 	private void AddForce(Vector2 force)
-    {
+	{
 		if (m_Frozen)
 		{
 			// Checky, but gets the job done
@@ -104,5 +112,5 @@ public class Player : MonoBehaviour
 		}
 		else
 			m_Rigidbody.AddForce(force);
-    }
+	}
 }
