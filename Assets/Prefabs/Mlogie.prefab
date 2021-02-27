@@ -96,7 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444735823d1f435488e321b44740db73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MoveX: {x: 2, y: 4}
+  m_MoveX: {x: 0, y: 0}
+  m_MoveY: {x: 0, y: 0}
   m_MoveSpeed: 0.02
 --- !u!61 &1074872770823991464
 BoxCollider2D:
@@ -107,7 +108,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1074872770823991468}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6a4e416484b49b141b10840b32a4cc14, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
