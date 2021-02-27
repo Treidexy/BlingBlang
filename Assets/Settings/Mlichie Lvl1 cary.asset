@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40f51640aaeb4c74e87c95f15e17afef, type: 3}
-  m_Name: Mlichie
+  m_Name: Mlichie Lvl1 cary
   m_EditorClassIdentifier: 
-  ThrompY: {x: 1, y: -6}
-  ThrompSpeed: 0.03
+  ThrompY: {x: 1, y: -5.5}
+  ThrompSpeed: 0.02

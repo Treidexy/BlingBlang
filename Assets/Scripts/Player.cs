@@ -99,6 +99,10 @@ public class Player : MonoBehaviour
 			if (collision.GetComponent<Glava>().IsGood)
 				AddForce(new Vector2 { y = m_GlavaBounce });
 		}
+		else if (collision.gameObject.layer == LayerMask.NameToLayer("Goal"))
+		{
+			Debug.Log("Next Level!");
+		}
 
 		m_Collisions++;
 	}
