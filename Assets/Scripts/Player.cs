@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class Player : MonoBehaviour
 
 	private Rigidbody2D m_Rigidbody;
 	private Vector2 m_Velocity;
+
+	private uint m_BottomCollisions;
+	private bool m_CollidingBottom { get => m_BottomCollisions > 0; }
 
 	private uint m_Collisions;
 	private bool m_Colliding { get => m_Collisions > 0; }
@@ -87,12 +91,12 @@ public class Player : MonoBehaviour
 		{
 			//transform.position += new Vector3 { y = GetComponent<Collider2D>().bounds.size.y };
 			AddForce(new Vector2 { y = m_MlichieBounce });
+			m_BottomCollisions++;
 		}
 		else if (collision.gameObject.layer == LayerMask.NameToLayer("Mlichie"))
 		{
-			if (m_Rigidbody.velocity.y <= 0.01f && !m_Frozen)
-				// TODO: Lose
-				Debug.Log("Player died. :(");
+			if (m_Rigidbody.velocity.y <= 0.01f && !m_Frozen && !m_CollidingBottom)
+				SceneManager.LoadSceneAsync((int)Scenes.Lose);
 		}
 		else if (collision.gameObject.layer == LayerMask.NameToLayer("Glava"))
 		{
@@ -101,14 +105,19 @@ public class Player : MonoBehaviour
 		}
 		else if (collision.gameObject.layer == LayerMask.NameToLayer("Goal") || collision.gameObject.layer == LayerMask.NameToLayer("AutoWin"))
 		{
+			SceneManager.LoadSceneAsync((int)Scenes.Playground);
 			Debug.Log("Next Level!");
 		}
 
 		m_Collisions++;
 	}
 
-	private void OnTriggerExit2D(Collider2D collision) =>
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+		if (collision.gameObject.layer == LayerMask.NameToLayer("MlichieBottom"))
+			m_BottomCollisions--;
 		m_Collisions--;
+	}
 
 	private void AddForce(Vector2 force)
 	{

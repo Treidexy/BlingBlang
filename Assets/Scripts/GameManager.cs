@@ -15,4 +15,7 @@ public class GameManager : MonoBehaviour
 		else
 			Debug.LogError("Instance already exists!");
 	}
+
+    private void OnDestroy() =>
+		Instance = null;
 }
