@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
 			if (!m_Colliding)
 				speedMul += m_AirBonus;
 
-			m_Rigidbody.AddForce(new Vector2(velHor, velVer) * speedMul);
+			AddForce(new Vector2(velHor, velVer) * speedMul);
 		}
 
 		m_MouseOver = false;
@@ -70,9 +70,37 @@ public class Player : MonoBehaviour
 		m_Rigidbody.velocity = m_Velocity;
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision) =>
-		m_Collisions++;
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.layer == LayerMask.NameToLayer("MlichieBottom"))
+        {
+			//transform.position += new Vector3 { y = GetComponent<Collider2D>().bounds.size.y };
+			AddForce(new Vector2 { y = 1000 });
+        }
+		else if (collision.gameObject.layer == LayerMask.NameToLayer("Mlichie"))
+        {
+			if (m_Rigidbody.velocity.y <= 0.01f)
+				// TODO: Lose
+				Debug.Log("Player died. :(");
+        }
 
-	private void OnTriggerExit2D(Collider2D collision) =>
-		m_Collisions--;
+			m_Collisions++;
+	}
+
+    private void OnTriggerExit2D(Collider2D collision) =>
+        m_Collisions--;
+
+	private void AddForce(Vector2 force)
+    {
+		if (m_Frozen)
+		{
+			// Checky, but gets the job done
+			m_Rigidbody.velocity = m_Velocity;
+			m_Rigidbody.AddForce(force);
+			m_Velocity = m_Rigidbody.velocity;
+			m_Rigidbody.velocity = Vector2.zero;
+		}
+		else
+			m_Rigidbody.AddForce(force);
+    }
 }

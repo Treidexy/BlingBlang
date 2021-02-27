@@ -17,7 +17,7 @@ public class Mlichie : MonoBehaviour
 	private void FixedUpdate()
 	{
 		float yPos = Mathf.Lerp(m_ThrompY.x, m_ThrompY.y, (Mathf.Sin(m_ThrompPos) + 1) / 2);
-		transform.position = new Vector3(transform.position.x, yPos);
+		transform.position = new Vector2(transform.position.x, yPos);
 
 		m_ThrompPos += m_ThrompSpeed;
 	}
