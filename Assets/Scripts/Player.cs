@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
 	private uint m_Collisions;
 	private bool m_Colliding { get => m_Collisions > 0; }
 
+	private static int s_Level;
+
 	private void Start() =>
 		m_Rigidbody = GetComponent<Rigidbody2D>();
 
@@ -116,10 +118,7 @@ public class Player : MonoBehaviour
 				Restart();
 		}
 		else if (collision.gameObject.layer == LayerMask.NameToLayer("Goal") || collision.gameObject.layer == LayerMask.NameToLayer("AutoWin"))
-		{
-			SceneManager.LoadSceneAsync((int)Scenes.Playground);
-			Debug.Log("Next Level!");
-		}
+			NextLevel();
 
 		m_Collisions++;
 	}
@@ -143,6 +142,14 @@ public class Player : MonoBehaviour
 		}
 		else
 			m_Rigidbody.AddForce(force);
+	}
+
+	private void NextLevel()
+	{
+		int lvl = ++s_Level + (int)Scenes.Level1;
+		if (lvl > (int)Scenes.LevelLast)
+			lvl = (int)Scenes.Playground;
+		SceneManager.LoadSceneAsync(lvl);
 	}
 
 	private void Restart() =>

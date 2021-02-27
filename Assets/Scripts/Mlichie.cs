@@ -5,10 +5,9 @@ using UnityEngine;
 public class Mlichie : MonoBehaviour
 {
 	[SerializeField]
-	private MlichieSettings m_Settings;
-
-	private Vector2 m_ThrompY { get => m_Settings.ThrompY; }
-	private float m_ThrompSpeed { get => m_Settings.ThrompSpeed; }
+	private Vector2 m_ThrompY = new Vector2(-1, -4);
+	[SerializeField, Range(0, 1)]
+	private float m_ThrompSpeed = 0.03f;
 	private float m_ThrompPos;
 
 	private void FixedUpdate()

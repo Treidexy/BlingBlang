@@ -9,7 +9,8 @@ public class Glava : MonoBehaviour
 	[SerializeField]
 	private GlavaSettings m_Settings;
 
-	private float m_MarinationSpeed { get => m_Settings.MarinationSpeed; }
+	[SerializeField]
+	private float m_MarinationSpeed = 0.02f;
 	private float m_Marination;
 
 	private Color m_GoodColor { get => m_Settings.GoodColor; }

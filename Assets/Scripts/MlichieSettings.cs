@@ -9,7 +9,7 @@ public class MlichieSettings : ScriptableObject
 	/// X = Start y position
 	/// Y = End y position
 	/// </summary>
-	public Vector2 ThrompY = new Vector2(0.5f, -2);
+	public Vector2 ThrompY = new Vector2(0.5f, -3);
 	[Range(0, 1)]
 	public float ThrompSpeed = 0.03f;
 }

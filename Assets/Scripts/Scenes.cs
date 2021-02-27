@@ -8,4 +8,7 @@ public enum Scenes
 	Lose,
 
 	Level1,
+	Level2,
+
+	LevelLast = Level2,
 }

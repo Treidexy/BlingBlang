@@ -107,7 +107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7191864485816238715}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: -3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 50, y: 5, z: 1}
   m_Children:
   - {fileID: 7191864485298798497}
@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Settings: {fileID: 11400000, guid: 7452de7761857154983c5d93c992dc02, type: 2}
+  m_MarinationSpeed: 0.02
 --- !u!61 &7191864485816238710
 BoxCollider2D:
   m_ObjectHideFlags: 0
