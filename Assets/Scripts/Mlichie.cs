@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Mlichie : MonoBehaviour
 {
-	/// <summary>
-	/// X = Start y position
-	/// Y = End y position
-	/// </summary>
 	[SerializeField]
+	private MlichieSettings m_Settings;
+
 	private Vector2 m_ThrompY;
-	[SerializeField, Range(0, 1)]
 	private float m_ThrompSpeed;
 	private float m_ThrompPos;
+
+	private void Start()
+	{
+		m_ThrompY = m_Settings.ThrompY;
+		m_ThrompSpeed = m_Settings.ThrompSpeed;
+	}
 
 	private void FixedUpdate()
 	{

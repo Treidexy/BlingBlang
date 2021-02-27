@@ -382,10 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da1cece3154d2df4ba5b141f8d1fbfb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Speed: 25
-  m_AirBonus: 10
-  m_MlichieBounce: 1000
-  m_GlavaBounce: 300
+  m_Settings: {fileID: 11400000, guid: 733493442d150c546942567db2926247, type: 2}
 --- !u!50 &141739892
 Rigidbody2D:
   serializedVersion: 4
@@ -401,7 +398,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 5
   m_AngularDrag: 0.05
-  m_GravityScale: 0.5
+  m_GravityScale: 0.75
   m_Material: {fileID: 6200000, guid: 6a4e416484b49b141b10840b32a4cc14, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -650,6 +647,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1240650558}
   - component: {fileID: 1240650559}
+  - component: {fileID: 1240650560}
   m_Layer: 30
   m_Name: Bottom
   m_TagString: Untagged
@@ -684,7 +682,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.07}
+  m_Offset: {x: 0, y: -0.065}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -695,7 +693,33 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.12, y: 0.02}
+  m_Size: {x: 0.14, y: 0.01}
+  m_EdgeRadius: 0
+--- !u!61 &1240650560
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240650557}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 6a4e416484b49b141b10840b32a4cc14, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.075}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.12, y: 0.01}
   m_EdgeRadius: 0
 --- !u!1 &1753368917
 GameObject:
@@ -707,6 +731,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1753368919}
   - component: {fileID: 1753368918}
+  - component: {fileID: 1753368921}
   - component: {fileID: 1753368920}
   m_Layer: 29
   m_Name: Glava
@@ -806,6 +831,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &1753368921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753368917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f0340d6e53b96f46888cf1faa5976f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Settings: {fileID: 11400000, guid: 7452de7761857154983c5d93c992dc02, type: 2}
 --- !u!1 &2037191062
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,8 +989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b83c60797ea985f4c92cfce67845a657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ThrompY: {x: 0.5, y: -2}
-  m_ThrompSpeed: 0.03
+  m_Settings: {fileID: 11400000, guid: 43ae5ed429e310b4a9c602da00084690, type: 2}
 --- !u!61 &2037191068
 BoxCollider2D:
   m_ObjectHideFlags: 0
