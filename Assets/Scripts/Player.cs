@@ -6,12 +6,17 @@ public class Player : MonoBehaviour
 {
 	[SerializeField]
 	private float m_Speed;
+	[SerializeField]
+	private float m_AirBonus;
 	private Rigidbody2D m_Rigidbody;
 
 	private bool m_MouseOver;
 	private bool m_Frozen;
 
 	private Vector2 m_Velocity;
+
+	private uint m_Collisions;
+	private bool m_Colliding { get => m_Collisions > 0; }
 
 	private void Start()
 	{
@@ -32,8 +37,14 @@ public class Player : MonoBehaviour
 		{
 			float velHor = Input.GetAxis("Horizontal");
 			float velVer = Input.GetAxis("Vertical");
+			if (velVer > 0)
+				velVer = 0;
 
-			m_Rigidbody.AddForce(new Vector2(velHor, velVer) * m_Speed);
+			float speedMul = m_Speed;
+			if (!m_Colliding)
+				speedMul += m_AirBonus;
+
+			m_Rigidbody.AddForce(new Vector2(velHor, velVer) * speedMul);
 		}
 
 		m_MouseOver = false;
@@ -58,4 +69,10 @@ public class Player : MonoBehaviour
 		// Restore velocity
 		m_Rigidbody.velocity = m_Velocity;
 	}
+
+	private void OnTriggerEnter2D(Collider2D collision) =>
+		m_Collisions++;
+
+	private void OnTriggerExit2D(Collider2D collision) =>
+		m_Collisions--;
 }
