@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Speed: 25
   m_AirBonus: 10
   m_MlichieBounce: 1000
-  m_GlavaBounce: 100
+  m_GlavaBounce: 300
 --- !u!50 &141739892
 Rigidbody2D:
   serializedVersion: 4
@@ -789,8 +789,8 @@ BoxCollider2D:
   m_GameObject: {fileID: 1753368917}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_Material: {fileID: 6200000, guid: 6a4e416484b49b141b10840b32a4cc14, type: 2}
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1130,7 +1130,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2096517484}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6a4e416484b49b141b10840b32a4cc14, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1156,7 +1156,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2096517484}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6a4e416484b49b141b10840b32a4cc14, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1182,7 +1182,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2096517484}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6a4e416484b49b141b10840b32a4cc14, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
