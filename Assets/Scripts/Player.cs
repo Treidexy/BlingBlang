@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private PlayerSettings m_Settings;
 
+	private Vector3 m_StartPosition;
+
 	private float m_Speed { get => m_Settings.Speed; }
 	private float m_AirBonus { get => m_Settings.AirBonus; }
 	private float m_GlavaBounce { get => m_Settings.GlavaBounce; }
@@ -24,8 +26,14 @@ public class Player : MonoBehaviour
 	private void Start() =>
 		m_Rigidbody = GetComponent<Rigidbody2D>();
 
-	private void FixedUpdate()
+    private void Awake() =>
+		m_StartPosition = transform.position;
+
+    private void FixedUpdate()
 	{
+		if (Input.GetKeyDown(KeyCode.R))
+			transform.position = m_StartPosition;
+
 		if (m_MouseOver && Input.GetMouseButton(0))
 		{
 			if (!m_Frozen)

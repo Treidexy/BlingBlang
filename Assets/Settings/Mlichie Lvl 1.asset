@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cc74b3493e6c7542b2f0ded1eb7ec18, type: 3}
-  m_Name: Glava
+  m_Script: {fileID: 11500000, guid: 40f51640aaeb4c74e87c95f15e17afef, type: 3}
+  m_Name: Mlichie Lvl 1
   m_EditorClassIdentifier: 
-  MarinationSpeed: 0.02
-  GoodColor: {r: 0.27450982, g: 1, b: 0.672214, a: 1}
-  BadColor: {r: 1, g: 1, b: 1, a: 1}
+  ThrompY: {x: -1, y: -4}
+  ThrompSpeed: 0.07
