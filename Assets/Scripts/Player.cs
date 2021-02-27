@@ -7,10 +7,10 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private PlayerSettings m_Settings;
 
-	private float m_Speed;
-	private float m_AirBonus;
-	private float m_GlavaBounce;
-	private float m_MlichieBounce;
+	private float m_Speed { get => m_Settings.Speed; }
+	private float m_AirBonus { get => m_Settings.AirBonus; }
+	private float m_GlavaBounce { get => m_Settings.GlavaBounce; }
+	private float m_MlichieBounce { get => m_Settings.MlichieBounce; }
 
 	private bool m_MouseOver;
 	private bool m_Frozen;
@@ -21,15 +21,8 @@ public class Player : MonoBehaviour
 	private uint m_Collisions;
 	private bool m_Colliding { get => m_Collisions > 0; }
 
-	private void Start()
-	{
+	private void Start() =>
 		m_Rigidbody = GetComponent<Rigidbody2D>();
-
-		m_Speed = m_Settings.Speed;
-		m_AirBonus = m_Settings.AirBonus;
-		m_GlavaBounce = m_Settings.GlavaBounce;
-		m_MlichieBounce = m_Settings.MlichieBounce;
-	}
 
 	private void FixedUpdate()
 	{

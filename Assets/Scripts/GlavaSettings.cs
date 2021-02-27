@@ -6,4 +6,7 @@ using UnityEngine;
 public class GlavaSettings : ScriptableObject
 {
 	public float MarinationSpeed = 0.02f;
+
+	public Color GoodColor = Color.green;
+	public Color BadColor = Color.white;
 }

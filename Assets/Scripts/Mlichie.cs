@@ -7,15 +7,9 @@ public class Mlichie : MonoBehaviour
 	[SerializeField]
 	private MlichieSettings m_Settings;
 
-	private Vector2 m_ThrompY;
-	private float m_ThrompSpeed;
+	private Vector2 m_ThrompY { get => m_Settings.ThrompY; }
+	private float m_ThrompSpeed { get => m_Settings.ThrompSpeed; }
 	private float m_ThrompPos;
-
-	private void Start()
-	{
-		m_ThrompY = m_Settings.ThrompY;
-		m_ThrompSpeed = m_Settings.ThrompSpeed;
-	}
 
 	private void FixedUpdate()
 	{

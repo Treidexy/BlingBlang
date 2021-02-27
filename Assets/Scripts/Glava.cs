@@ -9,20 +9,18 @@ public class Glava : MonoBehaviour
 	[SerializeField]
 	private GlavaSettings m_Settings;
 
-	private float m_MarinationSpeed;
+	private float m_MarinationSpeed { get => m_Settings.MarinationSpeed; }
 	private float m_Marination;
 
-    private void Start()
-    {
-		m_MarinationSpeed = m_Settings.MarinationSpeed;
-	}
+	private Color m_GoodColor { get => m_Settings.GoodColor; }
+	private Color m_BadColor { get => m_Settings.BadColor; }
 
     private void FixedUpdate()
 	{
 		float marSin = Mathf.Sin(m_Marination);
 		IsGood = marSin > 0;
 
-		GetComponent<SpriteRenderer>().color = Color.Lerp(Color.green, Color.white, Mathf.Abs((marSin - 1) / 2));
+		GetComponent<SpriteRenderer>().color = Color.Lerp(m_GoodColor, m_BadColor, Mathf.Abs((marSin - 1) / 2));
 
 		m_Marination += m_MarinationSpeed;
 	}
