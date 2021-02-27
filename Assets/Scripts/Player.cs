@@ -31,13 +31,13 @@ public class Player : MonoBehaviour
 	private void Start() =>
 		m_Rigidbody = GetComponent<Rigidbody2D>();
 
-    private void Awake() =>
+	private void Awake() =>
 		m_StartPosition = transform.position;
 
-    private void FixedUpdate()
+	private void FixedUpdate()
 	{
 		if (Input.GetKey(KeyCode.R))
-			transform.position = m_StartPosition;
+			Restart();
 
 		if (m_MouseOver && Input.GetMouseButton(0))
 		{
@@ -101,17 +101,19 @@ public class Player : MonoBehaviour
 		else if (collision.gameObject.layer == LayerMask.NameToLayer("Mlichie"))
 		{
 			if (m_Rigidbody.velocity.y <= 0.01f && !m_Frozen && !m_CollidingSafe)
-				SceneManager.LoadSceneAsync((int)Scenes.Lose);
+				Restart();
 		}
 		else if (collision.gameObject.layer == LayerMask.NameToLayer("Mlogie"))
 		{
 			if (m_Rigidbody.velocity.y <= 0.01f && !m_Frozen && !m_CollidingSafe)
-				SceneManager.LoadSceneAsync((int)Scenes.Lose);
+				Restart();
 		}
 		else if (collision.gameObject.layer == LayerMask.NameToLayer("Glava"))
 		{
 			if (collision.GetComponent<Glava>().IsGood)
 				AddForce(new Vector2 { y = m_GlavaBounce });
+			else
+				Restart();
 		}
 		else if (collision.gameObject.layer == LayerMask.NameToLayer("Goal") || collision.gameObject.layer == LayerMask.NameToLayer("AutoWin"))
 		{
@@ -124,7 +126,7 @@ public class Player : MonoBehaviour
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		if (collision.gameObject.layer == LayerMask.NameToLayer("MlichieBottom"))
+		if (collision.gameObject.layer == LayerMask.NameToLayer("MlichieBottom") || collision.gameObject.layer == LayerMask.NameToLayer("MlogieTop"))
 			m_SafeCollisions--;
 		m_Collisions--;
 	}
@@ -142,4 +144,10 @@ public class Player : MonoBehaviour
 		else
 			m_Rigidbody.AddForce(force);
 	}
+
+	private void Restart() =>
+		transform.position = m_StartPosition;
+
+	private void Lose() =>
+		SceneManager.LoadSceneAsync((int)Scenes.Lose);
 }

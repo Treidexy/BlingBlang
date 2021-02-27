@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
 		m_Audio = GetComponent<AudioSource>();
 		m_Audio.Play();
 		m_Audio.time = PlayerPrefs.GetFloat(TIMESTAMP);
+		#if UNITY_EDITOR
+			m_Audio.mute = true;
+		#endif
 	}
 
 	private void OnDestroy()
