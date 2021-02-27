@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: ce45bc4b81f9e3343ba4cbaebaaae90d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Cascadia Mono PL
+  fontNames:
+  - Cascadia Mono PL
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 69f47c41dbb0e9448b6258c3ccaf9453, type: 3}
+  - {fileID: 12800000, guid: b1b6d648dd50b89419efe6d282e5fed5, type: 3}
+  - {fileID: 12800000, guid: 54369269b7fdf544aa41cecb574d205a, type: 3}
+  - {fileID: 12800000, guid: b462418b5040b554ca20e82d18084775, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
