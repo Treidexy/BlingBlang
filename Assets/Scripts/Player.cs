@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 	private float m_Speed { get => m_Settings.Speed; }
 	private float m_AirBonus { get => m_Settings.AirBonus; }
 	private float m_GlavaBounce { get => m_Settings.GlavaBounce; }
+	private float m_MlogieBounce { get => m_Settings.MlogieBounce; }
 	private float m_MlichieBounce { get => m_Settings.MlichieBounce; }
 
 	private bool m_MouseOver;
@@ -21,8 +22,8 @@ public class Player : MonoBehaviour
 	private Rigidbody2D m_Rigidbody;
 	private Vector2 m_Velocity;
 
-	private uint m_BottomCollisions;
-	private bool m_CollidingBottom { get => m_BottomCollisions > 0; }
+	private uint m_SafeCollisions;
+	private bool m_CollidingSafe { get => m_SafeCollisions > 0; }
 
 	private uint m_Collisions;
 	private bool m_Colliding { get => m_Collisions > 0; }
@@ -35,7 +36,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
 	{
-		if (Input.GetKeyDown(KeyCode.R))
+		if (Input.GetKey(KeyCode.R))
 			transform.position = m_StartPosition;
 
 		if (m_MouseOver && Input.GetMouseButton(0))
@@ -89,13 +90,22 @@ public class Player : MonoBehaviour
 	{
 		if (collision.gameObject.layer == LayerMask.NameToLayer("MlichieBottom"))
 		{
-			//transform.position += new Vector3 { y = GetComponent<Collider2D>().bounds.size.y };
 			AddForce(new Vector2 { y = m_MlichieBounce });
-			m_BottomCollisions++;
+			m_SafeCollisions++;
+		}
+		else if (collision.gameObject.layer == LayerMask.NameToLayer("MlogieTop"))
+		{
+			AddForce(new Vector2 { y = m_MlogieBounce });
+			m_SafeCollisions++;
 		}
 		else if (collision.gameObject.layer == LayerMask.NameToLayer("Mlichie"))
 		{
-			if (m_Rigidbody.velocity.y <= 0.01f && !m_Frozen && !m_CollidingBottom)
+			if (m_Rigidbody.velocity.y <= 0.01f && !m_Frozen && !m_CollidingSafe)
+				SceneManager.LoadSceneAsync((int)Scenes.Lose);
+		}
+		else if (collision.gameObject.layer == LayerMask.NameToLayer("Mlogie"))
+		{
+			if (m_Rigidbody.velocity.y <= 0.01f && !m_Frozen && !m_CollidingSafe)
 				SceneManager.LoadSceneAsync((int)Scenes.Lose);
 		}
 		else if (collision.gameObject.layer == LayerMask.NameToLayer("Glava"))
@@ -115,7 +125,7 @@ public class Player : MonoBehaviour
 	private void OnTriggerExit2D(Collider2D collision)
 	{
 		if (collision.gameObject.layer == LayerMask.NameToLayer("MlichieBottom"))
-			m_BottomCollisions--;
+			m_SafeCollisions--;
 		m_Collisions--;
 	}
 

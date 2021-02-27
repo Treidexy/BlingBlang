@@ -15,4 +15,5 @@ MonoBehaviour:
   Speed: 25
   AirBonus: 10
   GlavaBounce: 300
+  MlogieBounce: 300
   MlichieBounce: 1000

@@ -5,8 +5,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance { get; private set; }
+	private const string TIMESTAMP = "timestamp";
 
 	public Camera MainCamera;
+	private AudioSource m_Audio;
 
 	private void Awake()
 	{
@@ -14,8 +16,16 @@ public class GameManager : MonoBehaviour
 			Instance = this;
 		else
 			Debug.LogError("Instance already exists!");
+
+		m_Audio = GetComponent<AudioSource>();
+		m_Audio.Play();
+		m_Audio.time = PlayerPrefs.GetFloat(TIMESTAMP);
 	}
 
-    private void OnDestroy() =>
+	private void OnDestroy()
+	{
 		Instance = null;
+		PlayerPrefs.SetFloat(TIMESTAMP, m_Audio.time);
+		PlayerPrefs.Save();
+	}
 }
