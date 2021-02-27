@@ -35,9 +35,6 @@ public class Player : MonoBehaviour
 
 			m_Rigidbody.AddForce(new Vector2(velHor, velVer) * m_Speed);
 		}
-		else
-		{
-		}
 
 		m_MouseOver = false;
 	}
