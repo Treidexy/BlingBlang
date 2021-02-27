@@ -4,6 +4,8 @@ using UnityEngine;
 
 public enum Scenes
 {
+	Tutorial,
+
 	Playground,
 	Lose,
 
