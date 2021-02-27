@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
         }
 		else if (collision.gameObject.layer == LayerMask.NameToLayer("Mlichie"))
         {
-			if (m_Rigidbody.velocity.y <= 0.01f)
+			if (m_Rigidbody.velocity.y <= 0.01f && !m_Frozen)
 				// TODO: Lose
 				Debug.Log("Player died. :(");
         }
