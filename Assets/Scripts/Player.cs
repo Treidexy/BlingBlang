@@ -30,13 +30,20 @@ public class Player : MonoBehaviour
 	private bool m_Colliding { get => m_Collisions > 0; }
 
 	[SerializeField]
+	private bool m_Flipped;
+
+	[SerializeField]
 	private Text m_TimeText;
 	private float m_Time;
 
 	internal static int s_Level;
 
-	private void Start() =>
+	private void Start()
+	{
 		m_Rigidbody = GetComponent<Rigidbody2D>();
+		if (m_Flipped)
+			m_Rigidbody.gravityScale = -m_Rigidbody.gravityScale;
+	}
 
 	private void Awake() =>
 		m_StartPosition = transform.position;
@@ -73,6 +80,8 @@ public class Player : MonoBehaviour
 			float speedMul = m_Speed;
 			if (!m_Colliding)
 				speedMul += m_AirBonus;
+			if (m_Flipped)
+				velVer = -velVer;
 
 			AddForce(new Vector2(velHor, velVer) * speedMul);
 		}
@@ -107,28 +116,28 @@ public class Player : MonoBehaviour
 	{
 		if (collision.gameObject.layer == LayerMask.NameToLayer("MlichieBottom"))
 		{
-			AddForce(new Vector2 { y = m_MlichieBounce });
+			AddForce(new Vector2 { y = m_MlichieBounce * (m_Flipped ? -1 : 1) });
 			m_SafeCollisions++;
 		}
 		else if (collision.gameObject.layer == LayerMask.NameToLayer("MlogieTop"))
 		{
-			AddForce(new Vector2 { y = m_MlogieBounce });
+			AddForce(new Vector2 { y = m_MlogieBounce * (m_Flipped ? -1 : 1) });
 			m_SafeCollisions++;
 		}
 		else if (collision.gameObject.layer == LayerMask.NameToLayer("Mlichie"))
 		{
-			if (m_Rigidbody.velocity.y <= 0.01f && !m_Frozen && !m_CollidingSafe)
+			if (m_Rigidbody.velocity.y * (m_Flipped ? -1 : 1) <= 0.01f && !m_Frozen && !m_CollidingSafe)
 				Restart();
 		}
 		else if (collision.gameObject.layer == LayerMask.NameToLayer("Mlogie"))
 		{
-			if (m_Rigidbody.velocity.y <= 0.01f && !m_Frozen && !m_CollidingSafe)
+			if (m_Rigidbody.velocity.y * (m_Flipped ? -1 : 1) <= 0.01f && !m_Frozen && !m_CollidingSafe)
 				Restart();
 		}
 		else if (collision.gameObject.layer == LayerMask.NameToLayer("Glava"))
 		{
 			if (collision.GetComponent<Glava>().IsGood)
-				AddForce(new Vector2 { y = m_GlavaBounce });
+				AddForce(new Vector2 { y = m_GlavaBounce * (m_Flipped ? -1 : 1) });
 			else
 				Restart();
 		}

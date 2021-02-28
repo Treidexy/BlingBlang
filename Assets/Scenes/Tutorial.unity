@@ -494,7 +494,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'This is a Mlichie, he will move around, minding his own business. Down
+  m_Text: 'This is a Michie, he will move around, minding his own business. Don''t
     bother him, unless you want to die. But remember, he likes comfortable seats,
     so he wont mind sitting on you. :)
 
@@ -611,9 +611,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: The player can be frozen by holding down the left mouse button. When a
-    player is frozen, they barely move and are killed when touched by an enemy (Mlichie
-    & Mlogie)
+  m_Text: The player can be frozen by holding down the left mouse button on the player
+    or tapping 'w' or up arrow. When a player is frozen, they barely move and are
+    not killed when touched by an enemy (Michie & Moglie)
 --- !u!222 &344646023
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2209,7 +2209,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: This is a Mlogie, she will move around and hates being disturbed. If you
+  m_Text: This is a Moglie, she will move around and hates being disturbed. If you
     disturb her, you will lose. But she has very thick hair, and she wont notice
     it if you jump on her hair.
 --- !u!222 &1631268940
@@ -2372,7 +2372,7 @@ MonoBehaviour:
 
 
     Press
-    ''r'' to restart the level'
+    ''r'' to restart the level. When you die, you will keep your momentum.'
 --- !u!222 &1755158011
 CanvasRenderer:
   m_ObjectHideFlags: 0

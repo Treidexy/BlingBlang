@@ -18,6 +18,8 @@ public enum Scenes
 	Level5,
 	Level6,
 	Level7,
+	Level8,
+	Level9,
 
-	LevelLast = Level7,
+	LevelLast = Level9,
 }
