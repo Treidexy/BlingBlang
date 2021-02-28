@@ -5,6 +5,7 @@ using UnityEngine;
 public enum Scenes
 {
 	Menu,
+	Level,
 	Tutorial,
 
 	Playground,

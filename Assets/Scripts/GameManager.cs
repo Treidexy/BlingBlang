@@ -39,10 +39,10 @@ public class GameManager : MonoBehaviour
 		PlayerPrefs.Save();
 	}
 
-	public void GotoLevel1()
+	public void GotoLevel(int lvl = 0)
 	{
-		if (PlayerPrefs.HasKey(TUTORIAL))
-			SceneManager.LoadSceneAsync((int)Scenes.Level1);
+		if (PlayerPrefs.HasKey(TUTORIAL) || lvl > 0)
+			SceneManager.LoadSceneAsync((int)Scenes.Level1 + lvl);
         else
 			GotoTutorial();
 	}
@@ -51,5 +51,5 @@ public class GameManager : MonoBehaviour
 		SceneManager.LoadSceneAsync((int)Scenes.Tutorial);
 
 	public void GotoLevelScreen() =>
-		SceneManager.LoadSceneAsync((int)Scenes.Menu);
+		SceneManager.LoadSceneAsync((int)Scenes.Level);
 }
