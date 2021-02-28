@@ -29,7 +29,7 @@ public class Tutorial : MonoBehaviour
 				PlayerPrefs.SetInt(GameManager.TUTORIAL, 0);
 				PlayerPrefs.Save();
 
-				SceneManager.LoadSceneAsync((int)Scenes.Level1);
+				GameManager.Instance.GotoLevel();
 				return;
 			}
 

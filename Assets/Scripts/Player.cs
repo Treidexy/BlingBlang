@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
 		if (Input.GetKey(KeyCode.R))
 			Restart();
 
-		if (m_MouseOver && Input.GetMouseButton(0))
+		if (m_MouseOver && Input.GetMouseButton(0) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
 		{
 			if (!m_Frozen)
 				OnMouseDown();

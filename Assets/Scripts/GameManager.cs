@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 		PlayerPrefs.Save();
 	}
 
-	private void FixedUpdate()
+	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.M))
 			ToggleMute();
@@ -49,15 +49,21 @@ public class GameManager : MonoBehaviour
 	public void ToggleMute() =>
 		m_Audio.mute = !m_Audio.mute;
 
-	public void GotoLevel(int lvl = 0)
+	public void GotoPlay()
 	{
-		if (PlayerPrefs.HasKey(TUTORIAL) || lvl > 0)
+		if (PlayerPrefs.HasKey(TUTORIAL))
 		{
-			Player.s_Level = lvl;
-			SceneManager.LoadSceneAsync((int)Scenes.Level1 + lvl);
+			Player.s_Level = 0;
+			SceneManager.LoadSceneAsync((int)Scenes.Level1);
 		}
 		else
 			GotoTutorial();
+	}
+
+	public void GotoLevel(int lvl = 0)
+	{
+		Player.s_Level = lvl;
+		SceneManager.LoadSceneAsync((int)Scenes.Level1 + lvl);
 	}
 
 	public void GotoMenu() =>
