@@ -50,6 +50,9 @@ public class GameManager : MonoBehaviour
 			GotoTutorial();
 	}
 
+	public void GotoMenu() =>
+		SceneManager.LoadSceneAsync((int)Scenes.Menu);
+
 	public void GotoTutorial() =>
 		SceneManager.LoadSceneAsync((int)Scenes.Tutorial);
 
