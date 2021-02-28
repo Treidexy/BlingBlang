@@ -1,6 +1,4 @@
-﻿//#define MUTE
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance { get; private set; }
 	public const string TUTORIAL = "tutorial";
+	private const string MUTED = "muted";
 	private const string TIMESTAMP = "timestamp";
 
 	public Camera MainCamera;
@@ -22,22 +21,33 @@ public class GameManager : MonoBehaviour
 			Debug.LogError("Instance already exists!");
 	}
 
-    private void Start()
-    {
+	private void Start()
+	{
 		m_Audio = GetComponent<AudioSource>();
 		m_Audio.Play();
 		m_Audio.time = PlayerPrefs.GetFloat(TIMESTAMP);
-		#if MUTE
-			m_Audio.mute = true;
-		#endif
+		m_Audio.mute = PlayerPrefs.GetInt(MUTED) == 1;
 	}
 
 	private void OnDestroy()
 	{
 		Instance = null;
 		PlayerPrefs.SetFloat(TIMESTAMP, m_Audio.time);
+		PlayerPrefs.SetInt(MUTED, m_Audio.mute ? 1 : 0);
 		PlayerPrefs.Save();
 	}
+
+	private void FixedUpdate()
+	{
+		if (Input.GetKeyDown(KeyCode.M))
+			ToggleMute();
+	}
+
+	public void Exit() =>
+		Application.Quit();
+
+	public void ToggleMute() =>
+		m_Audio.mute = !m_Audio.mute;
 
 	public void GotoLevel(int lvl = 0)
 	{
