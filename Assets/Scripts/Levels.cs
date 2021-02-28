@@ -27,9 +27,9 @@ public class Levels : MonoBehaviour
 				if (lvl > m_Levels)
 					return;
 				GameObject obj = Instantiate(m_Prefab, m_Canvas.transform);
-				obj.GetComponent<RectTransform>().position = new Vector2(Mathf.Lerp(m_Start.x, m_End.x, (float)m_Grid.x / x), Mathf.Lerp(m_Start.y, m_End.y, (float)m_Grid.y / y));
+				obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(Mathf.Lerp(m_Start.x, m_End.x, (float)x / m_Grid.x), Mathf.Lerp(m_Start.y, m_End.y, (float)y / m_Grid.y));
 				obj.GetComponentInChildren<Text>().text = lvl.ToString();
-				Debug.Log($"Level: {lvl}, Text: {lvl}");
+				Debug.Log($"X: {(float)m_Grid.x / x}, Y: {(float)m_Grid.y / y}");
 			}
 	}
 }
