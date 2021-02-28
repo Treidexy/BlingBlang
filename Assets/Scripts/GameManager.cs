@@ -8,8 +8,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance { get; private set; }
+	public const string TUTORIAL = "tutorial";
 	private const string TIMESTAMP = "timestamp";
-	private const string TUTORIAL = "tutorial";
 
 	public Camera MainCamera;
 	private AudioSource m_Audio;
@@ -44,12 +44,7 @@ public class GameManager : MonoBehaviour
 		if (PlayerPrefs.HasKey(TUTORIAL))
 			SceneManager.LoadSceneAsync((int)Scenes.Level1);
         else
-        {
-			PlayerPrefs.SetInt(TUTORIAL, 0);
-			PlayerPrefs.Save();
-
-			SceneManager.LoadSceneAsync((int)Scenes.Tutorial);
-        }
+			GotoTutorial();
 	}
 
 	public void GotoTutorial() =>

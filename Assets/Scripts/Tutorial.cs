@@ -26,6 +26,9 @@ public class Tutorial : MonoBehaviour
 
 			if (m_Index >= m_Pages.Length)
 			{
+				PlayerPrefs.SetInt(GameManager.TUTORIAL, 0);
+				PlayerPrefs.Save();
+
 				SceneManager.LoadSceneAsync((int)Scenes.Level1);
 				return;
 			}
