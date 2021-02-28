@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance { get; private set; }
 	private const string TIMESTAMP = "timestamp";
+	private const string TUTORIAL = "tutorial";
 
 	public Camera MainCamera;
 	private AudioSource m_Audio;
@@ -38,8 +39,18 @@ public class GameManager : MonoBehaviour
 		PlayerPrefs.Save();
 	}
 
-	public void GotoLevel1() =>
-		SceneManager.LoadSceneAsync((int)Scenes.Level1);
+	public void GotoLevel1()
+	{
+		if (PlayerPrefs.HasKey(TUTORIAL))
+			SceneManager.LoadSceneAsync((int)Scenes.Level1);
+        else
+        {
+			PlayerPrefs.SetInt(TUTORIAL, 0);
+			PlayerPrefs.Save();
+
+			SceneManager.LoadSceneAsync((int)Scenes.Tutorial);
+        }
+	}
 
 	public void GotoTutorial() =>
 		SceneManager.LoadSceneAsync((int)Scenes.Tutorial);
