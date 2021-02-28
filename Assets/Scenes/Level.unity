@@ -551,9 +551,8 @@ MonoBehaviour:
   m_Prefab: {fileID: 1257273138853417504, guid: c1f1ae2d6c988d244ad0720181ed6ebe,
     type: 3}
   m_Start: {x: -300, y: 50}
-  m_End: {x: 300, y: -200}
+  m_End: {x: 300, y: -325}
   m_Grid: {x: 8, y: 4}
-  m_Levels: 6
 --- !u!1 &2104999024
 GameObject:
   m_ObjectHideFlags: 0
