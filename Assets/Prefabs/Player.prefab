@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Settings: {fileID: 11400000, guid: 733493442d150c546942567db2926247, type: 2}
+  m_TimeText: {fileID: 6566336949484379420, guid: fc5901f51fe50ed4993a083c3ab8aa10,
+    type: 3}
 --- !u!61 &1776689619208611510
 BoxCollider2D:
   m_ObjectHideFlags: 0

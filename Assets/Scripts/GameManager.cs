@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿//#define MUTE
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,11 +19,14 @@ public class GameManager : MonoBehaviour
 			Instance = this;
 		else
 			Debug.LogError("Instance already exists!");
+	}
 
+    private void Start()
+    {
 		m_Audio = GetComponent<AudioSource>();
 		m_Audio.Play();
 		m_Audio.time = PlayerPrefs.GetFloat(TIMESTAMP);
-		#if UNITY_EDITOR
+		#if MUTE
 			m_Audio.mute = true;
 		#endif
 	}
@@ -31,4 +37,13 @@ public class GameManager : MonoBehaviour
 		PlayerPrefs.SetFloat(TIMESTAMP, m_Audio.time);
 		PlayerPrefs.Save();
 	}
+
+	public void GotoLevel1() =>
+		SceneManager.LoadSceneAsync((int)Scenes.Level1);
+
+	public void GotoTutorial() =>
+		SceneManager.LoadSceneAsync((int)Scenes.Tutorial);
+
+	public void GotoLevelScreen() =>
+		SceneManager.LoadSceneAsync((int)Scenes.Menu);
 }
