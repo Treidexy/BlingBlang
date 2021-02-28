@@ -42,8 +42,11 @@ public class GameManager : MonoBehaviour
 	public void GotoLevel(int lvl = 0)
 	{
 		if (PlayerPrefs.HasKey(TUTORIAL) || lvl > 0)
+		{
+			Player.s_Level = lvl;
 			SceneManager.LoadSceneAsync((int)Scenes.Level1 + lvl);
-        else
+		}
+		else
 			GotoTutorial();
 	}
 

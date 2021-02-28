@@ -28,10 +28,14 @@ public class Levels : MonoBehaviour
 					return;
 				GameObject obj = Instantiate(m_Prefab, m_Canvas.transform);
 				obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(Mathf.Lerp(m_Start.x, m_End.x, (float)x / m_Grid.x), Mathf.Lerp(m_Start.y, m_End.y, (float)y / m_Grid.y));
-				obj.GetComponentInChildren<Text>().text = lvl.ToString();
-				AddListener(obj, lvl);
+				obj.transform.Find("LevelButton").Find("Number").GetComponent<Text>().text = lvl.ToString();
+				obj.transform.Find("Time").GetComponent<Text>().text = GetTime(lvl).ToString("n2");
+				AddListener(obj.transform.Find("LevelButton").gameObject, lvl);
 			}
 	}
+
+	private float GetTime(int lvl) =>
+		PlayerPrefs.GetFloat($"Level{lvl}.Time");
 
 	private void AddListener(GameObject obj, int lvl) =>
 		obj.GetComponent<Button>().onClick.AddListener(() => GameManager.Instance.GotoLevel(lvl - 1));

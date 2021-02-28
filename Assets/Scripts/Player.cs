@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
 	private Text m_TimeText;
 	private float m_Time;
 
-	private static int s_Level;
+	internal static int s_Level;
 
 	private void Start() =>
 		m_Rigidbody = GetComponent<Rigidbody2D>();
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     private void OnDestroy()
     {
 		float oldTime = PlayerPrefs.GetFloat($"Level{s_Level}.Time");
-        PlayerPrefs.SetFloat($"Level{s_Level}.Time", Mathf.Max(m_Time, oldTime));
+        PlayerPrefs.SetFloat($"Level{s_Level}.Time", Mathf.Min(m_Time, oldTime));
 		PlayerPrefs.Save();
     }
 
