@@ -15,8 +15,7 @@ public class Levels : MonoBehaviour
 	private Vector2 m_End;
 	[SerializeField]
 	private Vector2Int m_Grid;
-	[SerializeField]
-	private int m_Levels;
+	private int m_Levels = (int)Scenes.LevelLast - (int)Scenes.Level1 + 1;
 
     private void Start()
     {
@@ -35,7 +34,7 @@ public class Levels : MonoBehaviour
 	}
 
 	private float GetTime(int lvl) =>
-		PlayerPrefs.GetFloat($"Level{lvl}.Time");
+		PlayerPrefs.GetFloat($"Level{lvl}.Time", float.NaN);
 
 	private void AddListener(GameObject obj, int lvl) =>
 		obj.GetComponent<Button>().onClick.AddListener(() => GameManager.Instance.GotoLevel(lvl - 1));

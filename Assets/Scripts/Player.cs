@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
 
     private void OnDestroy()
     {
-		float oldTime = PlayerPrefs.GetFloat($"Level{s_Level}.Time");
+		float oldTime = PlayerPrefs.GetFloat($"Level{s_Level}.Time", float.PositiveInfinity);
         PlayerPrefs.SetFloat($"Level{s_Level}.Time", Mathf.Min(m_Time, oldTime));
 		PlayerPrefs.Save();
     }
