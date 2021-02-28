@@ -48,13 +48,6 @@ public class Player : MonoBehaviour
 	private void Awake() =>
 		m_StartPosition = transform.position;
 
-    private void OnDestroy()
-    {
-		float oldTime = PlayerPrefs.GetFloat($"Level{s_Level}.Time", float.PositiveInfinity);
-        PlayerPrefs.SetFloat($"Level{s_Level}.Time", Mathf.Min(m_Time, oldTime));
-		PlayerPrefs.Save();
-    }
-
     private void FixedUpdate()
 	{
 		if (Input.GetKey(KeyCode.R))
@@ -173,6 +166,10 @@ public class Player : MonoBehaviour
 		int lvl = ++s_Level + (int)Scenes.Level1;
 		if (lvl > (int)Scenes.LevelLast)
 			lvl = (int)Scenes.Playground;
+
+		float oldTime = PlayerPrefs.GetFloat($"Level{s_Level}.Time", float.PositiveInfinity);
+		PlayerPrefs.SetFloat($"Level{s_Level}.Time", Mathf.Min(m_Time, oldTime));
+		PlayerPrefs.Save();
 		SceneManager.LoadSceneAsync(lvl);
 	}
 
