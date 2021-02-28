@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
@@ -28,6 +29,10 @@ public class Player : MonoBehaviour
 	private uint m_Collisions;
 	private bool m_Colliding { get => m_Collisions > 0; }
 
+	[SerializeField]
+	private Text m_TimeText;
+	private float m_Time;
+
 	private static int s_Level;
 
 	private void Start() =>
@@ -36,7 +41,14 @@ public class Player : MonoBehaviour
 	private void Awake() =>
 		m_StartPosition = transform.position;
 
-	private void FixedUpdate()
+    private void OnDestroy()
+    {
+		float oldTime = PlayerPrefs.GetFloat($"Level{s_Level}.Time");
+        PlayerPrefs.SetFloat($"Level{s_Level}.Time", Mathf.Max(m_Time, oldTime));
+		PlayerPrefs.Save();
+    }
+
+    private void FixedUpdate()
 	{
 		if (Input.GetKey(KeyCode.R))
 			Restart();
@@ -65,6 +77,9 @@ public class Player : MonoBehaviour
 			AddForce(new Vector2(velHor, velVer) * speedMul);
 		}
 
+		if (!(m_TimeText is null))
+			m_TimeText.text = m_Time.ToString("n2");
+		m_Time += Time.deltaTime;
 		m_MouseOver = false;
 	}
 
@@ -152,8 +167,11 @@ public class Player : MonoBehaviour
 		SceneManager.LoadSceneAsync(lvl);
 	}
 
-	private void Restart() =>
+	private void Restart()
+	{
 		transform.position = m_StartPosition;
+		m_Time = 0;
+	}
 
 	private void Lose() =>
 		SceneManager.LoadSceneAsync((int)Scenes.Lose);
